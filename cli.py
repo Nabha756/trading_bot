@@ -18,46 +18,52 @@ parser.add_argument("--quantity", required=True, type=float)
 parser.add_argument("--price", type=float)
 
 args = parser.parse_args()
+try:
+    # Validation
+    validate_side(args.side)
+    validate_order_type(args.type)
+    validate_quantity(args.quantity)
+    validate_price(args.type, args.price)
 
-# Validation
-validate_side(args.side)
-validate_order_type(args.type)
-validate_quantity(args.quantity)
-validate_price(args.type, args.price)
+    # Client
+    client = BinanceClient().get_client()
 
-# Create Binance client
-client = BinanceClient().get_client()
+    # Order execution
+    if args.type.upper() == "MARKET":
+        response = place_market_order(
+            client,
+            args.symbol,
+            args.side,
+            args.quantity,
+        )
+    else:
+        response = place_limit_order(
+            client,
+            args.symbol,
+            args.side,
+            args.quantity,
+            args.price,
+        )
 
-# Execute order
-if args.type.upper() == "MARKET":
-    response = place_market_order(
-        client,
-        args.symbol,
-        args.side,
-        args.quantity,
-    )
-else:
-    response = place_limit_order(
-        client,
-        args.symbol,
-        args.side,
-        args.quantity,
-        args.price,
-    )
+    # Output
+    print("\n===== ORDER SUMMARY =====")
+    print(f"Symbol: {args.symbol}")
+    print(f"Side: {args.side}")
+    print(f"Type: {args.type}")
+    print(f"Quantity: {args.quantity}")
 
-# Output
-print("\n===== ORDER SUMMARY =====")
-print(f"Symbol: {args.symbol}")
-print(f"Side: {args.side}")
-print(f"Type: {args.type}")
-print(f"Quantity: {args.quantity}")
+    if args.price:
+        print(f"Price: {args.price}")
 
-if args.price:
-    print(f"Price: {args.price}")
+    print("\n===== ORDER RESPONSE =====")
+    print(f"Order ID: {response.get('orderId')}")
+    print(f"Status: {response.get('status')}")
+    print(f"Executed Qty: {response.get('executedQty')}")
 
-print("\n===== ORDER RESPONSE =====")
-print(f"Order ID: {response.get('orderId')}")
-print(f"Status: {response.get('status')}")
-print(f"Executed Qty: {response.get('executedQty')}")
+    print("\nOrder submitted successfully")
 
-print("\nOrder submitted successfully")
+except ValueError as ve:
+    print(f"Validation Error: {ve}")
+
+except Exception as e:
+    print(f"Runtime/Error from API: {e}")
