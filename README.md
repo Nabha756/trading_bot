@@ -26,24 +26,31 @@ A Python-based command-line trading bot that connects to Binance USDT-M Futures 
 
 ---
 
-## Project Structure
+📁 Project Structure
+
 
 trading_bot/
+│
 ├── bot/
-│   ├── client.py              # Binance API wrapper
-│   ├── orders.py              # Order execution logic
-│   ├── validators.py         # Input validation
-│   ├── logging_config.py     # Logging configuration
+│ ├── init.py
+│ ├── client.py # Binance API wrapper
+│ ├── orders.py # Order execution logic
+│ ├── validators.py # Input validation
+│ ├── logging_config.py # Logging setup
 │
-├── logs/
-│   └── trading_bot.log       # Generated logs (requests/responses/errors)
+├── logs/ # Generated logs
+│ └── trading_bot.log
 │
-├── cli.py                    # CLI entry point
+├── cli.py # CLI entry point
+├── check_account.py
+├── test_connection.py
+├── test_order.py
+├── test_logger.py
+│
 ├── requirements.txt
-├── .env                      # API keys (NOT committed)
+├── .env.example
 ├── .gitignore
 └── README.md
-
 ---
 
 ## How to Run
