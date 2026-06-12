@@ -1,23 +1,25 @@
-# Binance Futures Testnet Trading Bot (Python CLI)
+# 📈 Binance Futures Testnet Trading Bot (Python CLI)
 
-## Description
-A Python-based command-line trading bot that connects to Binance USDT-M Futures Testnet and allows users to place Market and Limit orders with proper validation, logging, and error handling.
+## 📌 Description
+A Python-based command-line trading bot that connects to the **Binance USDT-M Futures Testnet** and allows users to place Market and Limit orders with proper validation, structured logging, and robust error handling.
 
----
-
-## Features
-- Place Market Orders on Futures Testnet
-- Place Limit Orders on Futures Testnet
-- Support for BUY and SELL orders
-- Command Line Interface (CLI) using argparse
-- Input validation for all parameters
-- Structured logging (request, response, error logs)
-- Exception handling for API and runtime errors
-- Modular architecture (separation of concerns)
+This project demonstrates real-world API integration, modular backend design, and production-style CLI tooling.
 
 ---
 
-## Tech Stack
+## 🚀 Features
+- Place **Market Orders** (BUY/SELL)
+- Place **Limit Orders** (BUY/SELL)
+- Binance Futures Testnet integration
+- Command Line Interface (CLI) using `argparse`
+- Strong input validation for all parameters
+- Structured logging (requests, responses, errors)
+- Graceful exception handling for API failures
+- Modular and scalable architecture
+
+---
+
+## 🧰 Tech Stack
 - Python 3.x
 - python-binance
 - argparse
@@ -26,22 +28,21 @@ A Python-based command-line trading bot that connects to Binance USDT-M Futures 
 
 ---
 
-📁 Project Structure
+## 📁 Project Structure
 
-
+```bash
 trading_bot/
-│
 ├── bot/
-│ ├── init.py
-│ ├── client.py # Binance API wrapper
-│ ├── orders.py # Order execution logic
-│ ├── validators.py # Input validation
-│ ├── logging_config.py # Logging setup
+│   ├── __init__.py
+│   ├── client.py              # Binance API wrapper
+│   ├── orders.py              # Order execution logic
+│   ├── validators.py          # Input validation
+│   └── logging_config.py      # Logging setup
 │
-├── logs/ # Generated logs
-│ └── trading_bot.log
+├── logs/
+│   └── trading_bot.log        # Generated logs
 │
-├── cli.py # CLI entry point
+├── cli.py                     # CLI entry point
 ├── check_account.py
 ├── test_connection.py
 ├── test_order.py
@@ -49,31 +50,67 @@ trading_bot/
 │
 ├── requirements.txt
 ├── .env.example
-├── .gitignore
-└── README.md
+└── .gitignore
+```
+
 ---
 
-## How to Run
+## ⚙️ Installation
 
-### Install dependencies
+### 1. Clone the repository
+```bash
+git clone <your-repo-url>
+cd trading_bot
+```
+
+### 2. Create virtual environment (optional but recommended)
+```bash
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+```
+
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
 ---
 
-### Market Order Example
+## 🔐 Environment Setup
+
+Create a `.env` file:
+
+```env
+BINANCE_API_KEY=your_testnet_api_key
+BINANCE_API_SECRET=your_testnet_api_secret
+```
+
+⚠️ Never push `.env` to GitHub.
+
+---
+
+## ▶️ How to Run
+
+### 📊 Market Order Example
+```bash
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.001
+```
 
----
-
-### Limit Order Example
+### 📉 Limit Order Example
+```bash
 python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.001 --price 150000
+```
 
 ---
 
-## Logging
+## 📜 Logging
 
 All logs are stored in:
+
+```bash
 logs/trading_bot.log
+```
 
 ### Logs include:
 - API request payloads
@@ -82,15 +119,17 @@ logs/trading_bot.log
 
 ---
 
-## Error Handling
-- Invalid CLI inputs handled with validation errors
+## ⚠️ Error Handling
+- Invalid CLI arguments handled via validation layer
 - API errors handled gracefully
 - Network failures handled using try/except blocks
+- Safe failure without crashing the bot
 
 ---
 
-## API Response Example
+## 📦 Sample Order Response
 
+```text
 ===== ORDER SUMMARY =====
 Symbol: BTCUSDT  
 Side: BUY  
@@ -104,27 +143,37 @@ Executed Qty: 0.0000
 Avg Price: N/A  
 
 Order submitted successfully
+```
 
 ---
 
-## Notes
-- Uses Binance Futures Testnet only
-- No real money is used
-- API keys must be stored in .env file
-- .env must NOT be pushed to GitHub
+## 🧠 Architecture Overview
+- `cli.py` → Entry point for user commands
+- `validators.py` → Input validation layer
+- `client.py` → Binance API communication
+- `orders.py` → Order execution logic
+- `logging_config.py` → Centralized logging system
 
 ---
 
-## Status
-- Market Orders Working
-- Limit Orders Working
-- CLI Interface Working
-- Logging Implemented
-- Validation Implemented
-- Error Handling Implemented
-- Testnet Integration Complete
+## 📌 Notes
+- Works only with Binance Futures Testnet
+- No real funds are used
+- Requires valid API keys from Binance Testnet
+- `.env` file must remain private
 
 ---
 
-## Author
-Built as part of a Python Developer internship assignment:Nabha Kulkarni
+## 📊 Project Status
+- ✅ Market Orders Working
+- ✅ Limit Orders Working
+- ✅ CLI Interface Working
+- ✅ Logging Implemented
+- ✅ Validation Implemented
+- ✅ Error Handling Implemented
+- ✅ Testnet Integration Complete
+
+---
+
+## 👤 Author
+Built by **Nabha Kulkarni** as part of a Python Developer internship project.
