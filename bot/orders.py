@@ -1,0 +1,9 @@
+from binance.enums import *
+
+def place_market_order(client, symbol, side, quantity):
+    return client.futures_create_order(
+        symbol=symbol,
+        side=side,
+        type=FUTURE_ORDER_TYPE_MARKET,
+        quantity=quantity
+    )
