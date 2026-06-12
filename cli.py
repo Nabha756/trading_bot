@@ -59,7 +59,7 @@ try:
     print(f"Order ID: {response.get('orderId')}")
     print(f"Status: {response.get('status')}")
     print(f"Executed Qty: {response.get('executedQty')}")
-
+    print(f"Avg Price: {response.get('avgPrice', 'N/A')}")
     print("\nOrder submitted successfully")
 
 except ValueError as ve:
