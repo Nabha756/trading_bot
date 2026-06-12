@@ -7,3 +7,13 @@ def place_market_order(client, symbol, side, quantity):
         type=FUTURE_ORDER_TYPE_MARKET,
         quantity=quantity
     )
+
+def place_limit_order(client, symbol, side, quantity, price):
+    return client.futures_create_order(
+        symbol=symbol,
+        side=side,
+        type=FUTURE_ORDER_TYPE_LIMIT,
+        quantity=quantity,
+        price=price,
+        timeInForce="GTC"
+    )
